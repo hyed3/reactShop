@@ -1,8 +1,14 @@
 import { Navbar,Nav,NavDropdown,Button,Jumbotron} from 'react-bootstrap';
-import React from 'react';
+import React, { useState } from 'react';
+import Data from './data.js';
 import './App.css';
 
 function App() {
+
+  let [상품,상품변경]=useState(Data); //import 꼭 해야됨
+
+
+
   return (
     <div className="App">
      <Navbar bg="light" expand="lg" className="">  {/* 원래 className이 없었지만 css를 위해 추가 */}
@@ -40,14 +46,19 @@ function App() {
       <div className="row"> {/* bootstrap 문법, row : 칼럼을 12조각으로 나누겠다 */}
         <div className="col-md-4"> {/* bootstrap 문법, col-4: 한개의 div를 4조각 크기로 쓰겠다  */}
         <img src="/images/lovecat.jpg" width="100%"/>
-        <h4>상품명</h4>
-        <p>상품설명 & 가격</p>
+        <h4>{ 상품[0].title }</h4>
+        <p>{ 상품[0].content} & { 상품[0].price }</p>
         </div>
         <div className="col-md-4">
         <img src="/images/bae.jpg" width="100%"/>
-          빈칸2</div> {/* bootstrap 문법, 가운데 md는 모바일 환경*/}
+        <h4>{ 상품[1].title }</h4>
+        <p>{ 상품[1].content} & { 상품[1].price}</p>
+        </div> {/* bootstrap 문법, 가운데 md는 모바일 환경*/}
         <div className="col-md-4">
-        <img src="/images/cute.jpg" width="100%"/>빈칸3</div>
+        <img src="/images/cute.jpg" width="100%"/>
+        <h4>{ 상품[2].title}</h4>
+        <p>{ 상품[2].content} & {상품[2].price}</p>
+        </div>
 
       </div>
 
