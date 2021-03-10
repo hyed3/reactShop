@@ -4,6 +4,8 @@ import { Navbar,Nav,NavDropdown,Button,Jumbotron} from 'react-bootstrap';
 import React, { useState } from 'react';
 import Data from './data.js';
 import './App.css';
+import {Link,Route,Switch} from 'react-router-dom';
+          //html 태그 , 컴포넌트라고 생각해도 됨
 
 function App() {
 
@@ -31,8 +33,13 @@ function App() {
   </Navbar.Collapse>
 </Navbar>
 
-              {/* 대문만들것 */}
 
+
+
+<Route exact path="/">  {/* // '/detail' 경로로 접속해도 보이는 이유 : 매칭되는것들은 다 보여줘서 */}
+      {/* 매칭 되는것만 보려면 exact 추가 */}
+              
+              {/* 대문만들것 */}
   <Jumbotron className="background">
   <h1>React-Shop은 덩이사진이 무료!</h1>
   <p>
@@ -43,10 +50,8 @@ function App() {
     <Button variant="primary">Learn more</Button>
   </p>
 </Jumbotron>
-    
-      
-    
-    <duv className="container"> {/* bootstrap 문법, container: 좌우여백을 적당히 주겠다 */}
+
+<div className="container"> {/* bootstrap 문법, container: 좌우여백을 적당히 주겠다 */}
       <div className="row"> {/* bootstrap 문법, row : 칼럼을 12조각으로 나누겠다 */}
 
       {
@@ -63,12 +68,34 @@ function App() {
         <img src="/images/lovecat.jpg" width="100%"/>
         <h4>{ 상품[0].title }</h4>
         <p>{ 상품[0].content} & { 상품[0].price }</p>
-        </div> */}
-
-        
+        </div> */}        
       </div>
+    </div>
+</Route>
 
-    </duv>
+
+<Route path="/detail"> 
+  <div className ="container">
+    <div className="row">
+      <div className="col-md-6">
+        <img src ="./images/1.JPG" width="100%"/>
+      </div>
+      <div className="col-md-6 mt-4">
+        <h4 className="pt-5">상품명</h4>
+        <p>상품 설명</p>
+        <p>120000원</p>
+        <button className="btn btn-danger">주문하기</button>
+      </div>
+    </div>
+  </div>
+</Route>
+
+
+{/* // 이렇게도 사용가능 :  <Route path="/hi" component={ 컴포넌트 명}></Route> */}
+    
+      
+    
+   
 
     </div>
   );
