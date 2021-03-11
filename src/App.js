@@ -6,6 +6,7 @@ import Data from './data.js';
 import './App.css';
 import {Link,Route,Switch} from 'react-router-dom';
           //html 태그 , 컴포넌트라고 생각해도 됨
+import Detail from './Detail.js';
 
 function App() {
 
@@ -19,9 +20,11 @@ function App() {
      <Navbar.Brand href="#home">React-Shop</Navbar.Brand>
      <Navbar.Toggle aria-controls="basic-navbar-nav" />
      <Navbar.Collapse id="basic-navbar-nav">
-      <Nav className="ml-auto">   {/*  mr-auto: 왼쪽정렬 */}
-      <Nav.Link href="#home">Home</Nav.Link>
-      <Nav.Link href="#link">Link</Nav.Link>
+      <Nav className="mr-auto">   {/*  ml-auto: 오른쪽정렬 */}
+
+      <Nav.Link ><Link to="/">Home</Link></Nav.Link>     {/* Link 이용하여 페이지 이동하기 */}
+      <Nav.Link ><Link to="/detail">Detail</Link></Nav.Link>
+
       <NavDropdown title="Dropdown" id="basic-nav-dropdown">
         <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
         <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
@@ -34,10 +37,11 @@ function App() {
 </Navbar>
 
 
-
+<Switch> {/* //이 안에 있는 ROUTER 중 하나만 실행되게 함 */}
 
 <Route exact path="/">  {/* // '/detail' 경로로 접속해도 보이는 이유 : 매칭되는것들은 다 보여줘서 */}
       {/* 매칭 되는것만 보려면 exact 추가 */}
+      
               
               {/* 대문만들것 */}
   <Jumbotron className="background">
@@ -49,9 +53,10 @@ function App() {
   <p>
     <Button variant="primary">Learn more</Button>
   </p>
-</Jumbotron>
+  </Jumbotron>
 
-<div className="container"> {/* bootstrap 문법, container: 좌우여백을 적당히 주겠다 */}
+
+  <div className="container"> {/* bootstrap 문법, container: 좌우여백을 적당히 주겠다 */}
       <div className="row"> {/* bootstrap 문법, row : 칼럼을 12조각으로 나누겠다 */}
 
       {
@@ -71,25 +76,21 @@ function App() {
         </div> */}        
       </div>
     </div>
-</Route>
+  </Route>
 
 
-<Route path="/detail"> 
-  <div className ="container">
-    <div className="row">
-      <div className="col-md-6">
-        <img src ="./images/1.JPG" width="100%"/>
-      </div>
-      <div className="col-md-6 mt-4">
-        <h4 className="pt-5">상품명</h4>
-        <p>상품 설명</p>
-        <p>120000원</p>
-        <button className="btn btn-danger">주문하기</button>
-      </div>
-    </div>
-  </div>
-</Route>
+  <Route path="/detail/:id/"> {/* 콜론 뒤에 맘대로 작명, 여러개 사용가능 (/:id/:id) */}
+  <Detail 상품={상품}/>
+  </Route>
 
+  <Route path="/:id">  {/* :id = 모든 문자를 의미 */}
+  <div>아무거나 적었을때 이거 보여주셈</div>
+  </Route>
+
+
+  
+
+</Switch>
 
 {/* // 이렇게도 사용가능 :  <Route path="/hi" component={ 컴포넌트 명}></Route> */}
     
@@ -111,6 +112,7 @@ function Content(props){
         </div> 
   )
 } //content end
+
 
 
 export default App;
