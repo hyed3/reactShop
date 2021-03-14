@@ -1,6 +1,17 @@
 import React from 'react'; //꼭 써야됨
 import { useHistory, useParams } from 'react-router';
+import styled from 'styled-components';
+import './Detail.scss';
 
+//css를 미리 입혀놓은 컴포넌트 -> className 작명 필요없음
+let 박스 = styled.div`  
+  padding : 20px;
+`;
+
+let 제목 = styled.h4`
+  font-size : 25px;
+  color : ${props => props.색상}
+`;
 
 function Detail(props){ //props로 받지 않고 app.js에서 해당 데이터를 복사해서 이 안에 넣어도 됨 
                         //but 중요한 데이터는 App.js 안에 넣어두는게 국룰임
@@ -11,6 +22,15 @@ function Detail(props){ //props로 받지 않고 app.js에서 해당 데이터�
 
     return(
         <div className ="container">
+        <박스>
+        <제목 clssName="red">디브 박스</제목>
+        </박스>
+        <div className="my-alert">
+          <p>재고가 얼마 남지 않았습니다</p>
+        </div>
+        <div className="my-alertred">
+          <p>재고가 얼마 남지 않았습니다</p>
+        </div>
         <div className="row">
           <div className="col-md-6">
             <img src ={"/images/"+props.상품[id].id+".JPG"} width="100%"/>
