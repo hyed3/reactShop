@@ -7,6 +7,7 @@ import './App.css';
 import {Link,Route,Switch} from 'react-router-dom';
           //html 태그 , 컴포넌트라고 생각해도 됨
 import Detail from './Detail.js';
+import axios from 'axios';
 
 function App() {
 
@@ -22,8 +23,9 @@ function App() {
      <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="mr-auto">   {/*  ml-auto: 오른쪽정렬 */}
 
-      <Nav.Link ><Link to="/">Home</Link></Nav.Link>     {/* Link 이용하여 페이지 이동하기 */}
-      <Nav.Link ><Link to="/detail">Detail</Link></Nav.Link>
+      {/* <Nav.Link ><Link to="/">Home</Link></Nav.Link>  -> <a>태그 안에 <a>태그라 콘솔창에 에러*/}    {/* Link 이용하여 페이지 이동하기 */}
+      <Nav.Link as = {Link} to="/">Home</Nav.Link>
+      <Nav.Link as = {Link} to="/detail">Detail</Nav.Link>
 
       <NavDropdown title="Dropdown" id="basic-nav-dropdown">
         <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
@@ -75,8 +77,22 @@ function App() {
         <p>{ 상품[0].content} & { 상품[0].price }</p>
         </div> */}        
       </div>
+
+      <button className="btn btn-primary" onClick={()=>{
+        //axios.get(); //서버에게 get 요청을 함
+        axios.get('https://codingapple1.github.io/shop/data2.json')
+        .then((결과)=>{       
+        console.log(결과.data);
+        상품변경([...상품,...결과.data]);
+
+        })//데이터 요청을 성공했을때, 데이터 내용을 알고 싶으면 파라미터 추가해서 확인하면 된다
+        .catch()//데이터 요청을 실패했을때
+
+      }}>더보기</button>
     </div>
   </Route>
+
+   
 
 
   <Route path="/detail/:id/"> {/* 콜론 뒤에 맘대로 작명, 여러개 사용가능 (/:id/:id) */}
